@@ -1,15 +1,28 @@
-#!/usr/bin/python3
-import random
-import sys
-from time import sleep
-import datetime
+#!/usr/bin/env python3
+"""
+Type checking with mypy
+"""
+from typing import List, Tuple
 
-for i in range(10000):
-    sleep(random.random())
-    sys.stdout.write("{:d}.{:d}.{:d}.{:d} - [{}] \"GET /projects/260 HTTP/1.1\" {} {}\n".format(
-        random.randint(1, 255), random.randint(1, 255), random.randint(1, 255), random.randint(1, 255),
-        datetime.datetime.now(),
-        random.choice([200, 301, 400, 401, 403, 404, 405, 500]),
-        random.randint(1, 1024)
-    ))
-    sys.stdout.flush()
+
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
+    """
+    Increase elements of an array by doubling each element in the given array
+    Args:
+        lst (Sequence -> Tuple)
+        factor (int): Factor of increase
+    Return:
+        (List): list of the zoomed array
+    """
+    zoomed_in: List = [
+        item for item in lst
+        for i in range(int(factor))
+    ]
+    return zoomed_in
+
+
+array = (12, 72, 91)
+
+zoom_2x = zoom_array(array)
+
+zoom_3x = zoom_array(array, 3)
